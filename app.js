@@ -50,7 +50,6 @@ app.get('/search', async (req, res, next) => {
 
 
         //MVP result: using  http://localhost:3000/search? to trigger the search route  
-        
         //end result: http://localhost:3000/search?q=your_search_term
     } catch (err) { //err handling done
         console.error(err);
