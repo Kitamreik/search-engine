@@ -2,8 +2,7 @@
 const { MongoClient } = require("mongodb");
 
 // connect to your Atlas deployment
-const uri =  
- "mongodb+srv://kitdamreik:search_eng@cluster0.x5rgfhp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri =  "";
 
 const client = new MongoClient(uri);
 
@@ -11,8 +10,8 @@ async function run() {
   try {
 
     // set namespace
-    const database = client.db("search_engine");
-    const collection = database.collection("pages");
+    const database = client.db("");
+    const collection = database.collection("");
     
     // define your Atlas Search index
     const index = {
