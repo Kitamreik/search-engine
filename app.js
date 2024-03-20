@@ -1,29 +1,15 @@
+require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose');
-mongoose.set('strictQuery', false);
 const bodyParser = require('body-parser');
 const path = require('node:path');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 //needed
 
-//MongoDB connection without env 
-//const mongoURI = '';
-
-
-//Use mongoose.connect() to make your connection to your local MongoDB server.
-main().catch(err => console.log(err));
-
-async function main() {
-  await mongoose.connect(mongoURI);
-  console.log("mongoDB connected")
-
-};
-//For the first parameter of the connect() method, put in the actual MongoDB connection string 
-
-
+const mongoose = require('mongoose');
+const {Schema} = mongoose;
 // Define a schema and model for the pages
-const pageSchema = new mongoose.Schema({
+const pageSchema = new Schema({
     _id: String,
     //title: String,
     //content: String,
@@ -42,6 +28,9 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); 
 app.use(express.static(path.join(__dirname + '/public')));
+//app.use(express.static(path.join(__dirname, "js"))); //test
+
+require('./config/connection');
 
 app.get('/', async (req, res, next) => {
     //res.status(200).json({success: {message: "Index successful"}, statusCode: 200}); //to test
@@ -72,4 +61,6 @@ app.get('/search', async (req, res, next) => {
 //server operational
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
+    console.log("mongoDB connected");
 });
+module.exports = Page;

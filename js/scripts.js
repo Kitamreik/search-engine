@@ -4,12 +4,12 @@ async function search() {
     const data = await response.json();
     console.log(data)
 
-    // const resultsContainer = document.getElementById('results');
-    // resultsContainer.innerHTML = '';
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.textContent = '';
 
-    //data.forEach(page => {
-      // const resultElement = document.createElement('div');
-      //resultElement.innerHTML = `<h2>${page.title}</h2><p>${page.content}</p>`;
-      //resultsContainer.appendChild(resultElement);
-    //});
+    data.forEach(page => {
+      const resultElement = document.createElement('div');
+      resultElement.textContent = `<h2>${page.title}</h2><p>${page.content}</p>`;
+      resultsContainer.appendChild(resultElement);
+    });
 }
